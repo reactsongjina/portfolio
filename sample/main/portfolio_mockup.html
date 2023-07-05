@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>portfolio :: Portfolio Mockup</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><!-- added -->
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	line-height: 1;
+	font-family: "Open Sans", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+}
+body.fixed {
+	overflow-y: hidden;
+}
+#header {
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	padding: 30px;
+	width: 100%;
+	box-sizing: border-box;
+}
+#gnb li {
+	display: inline-block;
+	margin-left: 50px;
+}
+#gnb li:first-child {
+	margin-left: 0;
+}
+#gnb li a {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 0.813em;
+	font-weight: 600;
+	color: #fff;
+	transition: color 0.3s;
+}
+#gnb.dark li a {
+	color: #333;
+}
+#header .tab {
+	position: fixed;
+	right: 30px;
+	top: 30px;
+	z-index: 1001;
+	width: 30px;
+	height: 23px;
+}
+#header .tab span {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 2px;
+	background-color: #fff;
+	transition: 0.3s;
+}
+#header .tab.dark span {
+	background-color: #333;
+}
+#header .tab span:nth-child(1) {
+	width: 21px;
+}
+#header .tab span:nth-child(2) {
+	top: 10px;
+	width: 21px;
+}
+#header .tab span:nth-child(3) {
+	top: 20px;
+	width: 30px;
+}
+#header .tab.active span {
+	background-color: #fff;
+}
+#header .tab.active span:nth-child(1) {
+	top: 10px;
+	width: 30px;
+	transform: rotate(45deg);
+}
+#header .tab.active span:nth-child(2) {
+	display: none;
+}
+#header .tab.active span:nth-child(3) {
+	top: 10px;
+	width: 30px;
+	transform: rotate(-45deg);
+}
+#header .total {
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1000;
+	background-color: rgba(0,0,0,.75);
+}
+#header .total .inner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+#header .total .inner ul {
+	display: flex;
+	flex-direction: row;
+}
+#header .total .inner ul li {
+	margin-left: 50px;
+}
+#header .total .inner ul li:first-child {
+	margin-left: 0;
+}
+#header .total .inner ul li a {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 1em;
+	font-weight: 600;
+	color: #fff;
+	transition: color 0.3s;
+}
+
+@media only screen and (max-width: 1024px) {
+	#gnb {
+		display: none;
+	}
+	#header .total .inner ul {
+		display: flex;
+		flex-direction: column;
+	}
+	#header .total .inner ul li {
+		margin-left: 0;
+		margin-bottom: 60px;
+		text-align: center;
+	}
+	#header .total .inner ul li:last-child {
+		margin-bottom: 0;
+	}
+	#header .total .inner ul li a {
+		font-size: 1.2em;
+		font-weight: 400;
+	}
+}
+
+section h2 {
+	padding: 80px 30px;
+	font-size: 1.8em;
+	font-weight: 300;
+	color: #ccc;
+	opacity: 0;
+	transform: translateY(100px);
+	transition: 0.3s;
+}
+section.active h2 {
+	opacity: 1;
+	transform: translateY(0);
+}
+#start {
+	height: 100vh;
+	background-color: #999;
+}
+#start .main_slider { /* added */
+	position: relative;
+	height: 100vh;
+	overflow-x: hidden;
+}
+#start .main_slider { /* added */
+	position: relative;
+	height: 100vh;
+}
+#start .main_slider .swiper-container { /* added */
+	width: 100%;
+	height: 100%;
+}
+#start .main_slider .swiper-container .swiper-slide { /* added */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-align: center;
+	font-size: 1.125em;
+	background-color: #fff;
+}
+#start .main_slider .swiper-container .swiper-slide img { /* added */
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 1;
+	transform: scale(1.2);
+	transition: transform 2.5s;
+}
+#start .main_slider .swiper-container .swiper-slide.swiper-slide-active img { /* added */
+	transform: scale(1);
+}
+#start .main_slider .keytext { /* added */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 100;
+	width: 1100px;
+	text-align: left;
+	color: #fff;
+	user-select: none;
+	text-shadow: 1px 1px 6px rgba(0,0,0,.2);
+	transform: translate(-50%,-50%);
+}
+#start .main_slider .keytext strong { /* added */
+	display: block;
+	line-height: 1.2;
+	font-family: "Roboto", sans-serif;
+	font-size: 3vw;
+	font-weight: 700;
+	opacity: 0;
+	transform: translateY(50px);
+}
+#start .main_slider .keytext span { /* added */
+	display: block;
+	margin-top: 20px;
+	line-height: 1.6;
+	letter-spacing: 1px;
+	font-size: 0.813em;
+	font-weight: 400;
+	opacity: 0;
+	transform: translateY(50px);
+}
+#start .main_slider .keytext.active strong { /* added */
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.75s, transform 0.75s;
+}
+#start .main_slider .keytext.active span { /* added */
+	opacity: 0.4;
+	transform: translateY(0);
+	transition: opacity 0.75s, transform 0.75s;
+	transition-delay: 0.8s;
+}
+
+@media only screen and (max-width: 1120px) { /* added */
+	#start .main_slider .keytext {
+		padding: 0 30px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	#start .main_slider .keytext strong {
+		font-size: 3em;
+	}
+}
+
+#page1 {
+	height: 500px;
+}
+#page2 {
+	height: 500px;
+	background-color: #999;
+}
+#page3 {
+	height: 2000px;
+}
+#page4 {
+	height: 600px;
+	background-color: #999;
+}
+#page5 {
+	height: 600px;
+}
+#contact {
+	height: 600px;
+	background-color: #999;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@terwanerik/scrolltrigger@1.0.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><!-- added -->
+<script>
+$(function(){
+	let n=0;
+	let pos=0;
+
+	function scrollInteraction(t){
+		if(t < $("#page1").offset().top){
+			n=0;
+		}
+		else if(t < $("#page2").offset().top){
+			n=1;
+		}
+		else if(t < $("#page3").offset().top){
+			n=2;
+		}
+		else if(t < $("#page4").offset().top){
+			n=3;
+		}
+		else if(t < $("#page5").offset().top){
+			n=4;
+		}
+		else{
+			n=5;
+		}
+
+		if(n == 1 || n == 3 || n == 5){
+			$("#gnb").addClass("dark");
+			$("#header .tab").addClass("dark");
+		}
+		else{
+			$("#gnb").removeClass("dark");
+			$("#header .tab").removeClass("dark");
+		}
+	}
+
+	$("#gnb li").click(function(e){
+		e.preventDefault();
+		n=$(this).index();
+
+		if(n == 0){
+			pos=0;
+		}
+		else if(n == 6){
+			pos=Math.round($("#contact").offset().top);
+		}
+		else{
+			pos=Math.round($("#page"+n).offset().top);
+		}
+
+		$("html").animate({scrollTop: pos}, 600);
+	});
+
+	const trigger=new ScrollTrigger.default({
+		trigger: {
+			once: true,
+			toggle: {
+				class: {
+					in: "active",
+					out: "inactive"
+				}
+			},
+			offset: {
+				viewport: {
+					x: 0,
+					y: 0.25
+				}
+			}
+		},
+		scroll: {
+			sustain: 200,
+			element: window,
+			callback: (offset, dir) => { scrollInteraction(offset.y); }
+		}
+	});
+
+	trigger.add("#start, section[id^=page], #contact");
+
+	$("#header .tab").click(function(e){
+		e.preventDefault();
+
+		if($(this).hasClass("active") == false){
+			$("body").addClass("fixed");
+			$(this).addClass("active");
+			$("#header .total").fadeIn(300);
+		}
+		else{
+			$("body").removeClass("fixed");
+			$(this).removeClass("active");
+			$("#header .total").fadeOut(300);
+		}
+	});
+	$("#header .total li").click(function(e){
+		e.preventDefault();
+		n=$(this).index();
+		$("body").removeClass("fixed");
+		$("#header .tab").removeClass("active");
+
+		$("#header .total").fadeOut(300, function(){
+			if(n == 0){
+				pos=0;
+			}
+			else if(n == 6){
+				pos=Math.round($("#contact").offset().top);
+			}
+			else{
+				pos=Math.round($("#page"+n).offset().top);
+			}
+
+			$("html").animate({scrollTop: pos}, 600);
+		});
+	});
+
+	const keytextString=[ // added
+		{
+			en: "CREATE SEMANTIC PAGES",
+			ko: "Create semantic pages that increase web accessibility"
+		},
+		{
+			en: "JAVASCRIPT AND LIBRARIES",
+			ko: "Using JavaScript implementations and libraries"
+		},
+		{
+			en: "USER INTERFACE USING REACT",
+			ko: "User interface implementation using React"
+		}
+	];
+
+	let mainSwiper=new Swiper(".mainSwiper", { // added
+		speed: 1200,
+		// autoplay: {
+			// delay: 5000
+		// },
+		on: {
+			init: function(){
+				// console.log(this.slides.length, this.activeIndex);
+				textInteractive(this.activeIndex);
+			},
+			slideChangeTransitionEnd: function(){
+				// console.log(this.slides.length, this.activeIndex);
+				textInteractive(this.activeIndex);
+			}
+		}
+	});
+
+	function textInteractive(n){ // added
+		$(".swiper-slide").each(function(){
+			if($(this).children().length == 2){
+				$(this).children(".keytext").remove();
+			}
+		});
+
+		setTimeout(function(){
+			$(".swiper-slide-active").prepend('<div class="keytext"><strong></strong><span></span></div>');
+		}, 10);
+
+		setTimeout(function(){
+			$(".main_slider .keytext strong").text(keytextString[n].en);
+			$(".main_slider .keytext span").text(keytextString[n].ko);
+			$(".main_slider .keytext").addClass("active");
+		}, 300);
+	}
+});
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+	<header id="header">
+		<nav id="gnb">
+			<ul>
+				<li><a href="">home</a></li>
+				<li><a href="">introduce</a></li>
+				<li><a href="">skill</a></li>
+				<li><a href="">portfolio</a></li>
+				<li><a href="">case study</a></li>
+				<li><a href="">dev open source</a></li>
+				<li><a href="">contact</a></li>
+			</ul>
+		</nav>
+		<a href="" class="tab">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+		<div class="total">
+			<div class="inner">
+				<ul>
+					<li><a href="">home</a></li>
+					<li><a href="">introduce</a></li>
+					<li><a href="">skill</a></li>
+					<li><a href="">portfolio</a></li>
+					<li><a href="">case study</a></li>
+					<li><a href="">dev open source</a></li>
+					<li><a href="">contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<section id="start">
+		<div class="main_slider"><!-- added -->
+			<div class="swiper-container mainSwiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="images/main1.png" alt="main1">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/main2.png" alt="main2">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/main3.jpg" alt="main3">
+					</div>
+				</div>
+			</div>
+			<!--
+			<div class="keytext">
+				<strong></strong>
+				<span></span>
+			</div>
+			-->
+		</div>
+	</section>
+	<section id="page1"><h2>introduce</h2></section>
+	<section id="page2"><h2>skill</h2></section>
+	<section id="page3"><h2>portfolio</h2></section>
+	<section id="page4"><h2>case study</h2></section>
+	<section id="page5"><h2>dev open source</h2></section>
+	<section id="contact"><h2>contact</h2></section>
+</div>
+</body>
+</html>

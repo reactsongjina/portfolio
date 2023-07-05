@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>portfolio :: Portfolio Mockup</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 320px;
+	font-family: "Roboto", "Noto Sans KR", serif;
+	font-size: 1em;
+	color: #000;
+}
+
+/* header */
+#header {
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	padding: 30px 50px;
+	width: 100%;
+	box-sizing: border-box;
+}
+#header .logo h1 {
+	line-height: 2;
+	text-transform: uppercase;
+	letter-spacing: 7.5px;
+	font-size: 0.913em;
+	font-weight: 400;
+	color: #222;
+}
+#header .tab {
+	position: fixed;
+	right: 50px;
+	top: 30px;
+	z-index: 1001;
+	width: 30px;
+	height: 23px;
+}
+#header .tab span {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 2px;
+	background-color: #222;
+	transition: 0.3s;
+}
+#header .tab span:nth-child(1) {
+	width: 21px;
+}
+#header .tab span:nth-child(2) {
+	top: 10px;
+	width: 21px;
+}
+#header .tab span:nth-child(3) {
+	top: 20px;
+	width: 30px;
+}
+#header .tab.active span:nth-child(1) {
+	top: 10px;
+	width: 30px;
+	transform: rotate(45deg);
+}
+#header .tab.active span:nth-child(2) {
+	display: none;
+}
+#header .tab.active span:nth-child(3) {
+	top: 10px;
+	width: 30px;
+	transform: rotate(-45deg);
+}
+
+/* main slider */
+.main_slider {
+	position: relative;
+	margin: 0 auto;
+	margin-top: 15vh;
+	max-width: 1320px;
+	height: 70vh;
+	overflow: visible;
+}
+.main_slider .swiper-container {
+	position: relative;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.main_slider .swiper-container .swiper-slide {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-align: center;
+	font-size: 1.125em;
+	background-color: transparent;
+}
+.main_slider .swiper-container .swiper-slide.list1 .area {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+.main_slider .swiper-container .swiper-slide.list2 .area {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+.main_slider .swiper-container .swiper-slide.list3 .area {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+.main_slider .swiper-container .swiper-slide.list4 .area {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 30%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+.main_slider .swiper-container .swiper-slide.list5 .area {
+	position: absolute;
+	left: 40%;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+.main_slider .swiper-container .swiper-slide .area.active {
+	opacity: 1;
+	transition: opacity 0.6s ease-out;
+	transition-delay: 1.2s;
+}
+.main_slider .swiper-container .swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	-webkit-user-select: none;
+	object-fit: cover;
+	user-select: none;
+	-webkit-user-drag: none;
+	user-drag: none;
+}
+.main_slider .shadow {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	background-color: #eee;
+	transition: 0.6s ease-out;
+}
+.main_slider .keytext {
+	position: absolute;
+	left: 0;
+	top: 12%;
+	z-index: 1000;
+	width: 40%;
+	color: #222;
+	opacity: 0;
+	user-select: none;
+}
+.main_slider .keytext.active {
+	opacity: 1;
+	transition: opacity 0.6s ease-out;
+	transition-delay: 1.2s;
+}
+.main_slider .keytext .title {
+	position: relative;
+	margin-bottom: 25px;
+	width: 100%;
+	line-height: 1.35;
+	font-family: "Merriweather", "Noto Sans KR", serif;
+	font-size: 3.25em;
+	font-weight: 700;
+}
+.main_slider .keytext .title span {
+	display: inline-block;
+	width: 100%;
+}
+.main_slider .keytext .title::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: -7px;
+	width: 7px;
+	height: 7px;
+	border: 3px solid #222;
+	border-radius: 50%;
+}
+.main_slider .keytext .subject {
+	line-height: 2;
+	font-size: 0.875em;
+	font-weight: 300;
+}
+.main_slider .keytext .subject dt {
+	display: block;
+	margin-bottom: 15px;
+	text-transform: lowercase;
+	letter-spacing: 7.5px;
+	font-weight: 700;
+}
+.main_slider .keytext .subject dd span {
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	padding: 0 14px;
+	line-height: 28px;
+	font-weight: 300;
+	background-color: #f5f5f5;
+}
+.main_slider .keytext .link {
+	display: block;
+	position: relative;
+	margin-top: 70px;
+	padding-right: 10px;
+	width: 85px;
+	font-size: 0.875em;
+	color: #222;
+}
+.main_slider .keytext .link::after {
+	content: "";
+	position: absolute;
+	right: 3px;
+	top: 50%;
+	margin-top: -3px;
+	width: 6px;
+	height: 6px;
+	border-left: 2px solid #222;
+	border-bottom: 2px solid #222;
+	transform: rotate(225deg);
+}
+.main_slider .swiper_control {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	bottom: -60px;
+	width: 100%;
+	height: 40px;
+}
+.main_slider .swiper_control .current,
+.main_slider .swiper_control .total {
+	font-size: 0.813em;
+	font-weight: 700;
+	color: #222;
+}
+.main_slider .swiper_control .current {
+	margin-right: 15px;
+}
+.main_slider .swiper_control .total {
+	margin-left: 15px;
+}
+.main_slider .swiper_control .progressbar {
+	position: relative;
+	width: 240px;
+	height: 1px;
+	background-color: #ccc;
+}
+.main_slider .swiper_control .progressbar span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 1px;
+	background-color: #222;
+}
+.main_slider .page_control a {
+	position: fixed;
+	top: 50%;
+	z-index: 10;
+	letter-spacing: 9px;
+	font-size: 0.913em;
+	font-weight: 700;
+	writing-mode: vertical-rl;
+}
+.main_slider .page_control a.bt_prev {
+	left: 20px;
+	transform: translateY(-50%) rotate(-180deg);
+}
+.main_slider .page_control a.bt_next {
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 1440px) {
+	.main_slider .page_control a {
+		display: none;
+	}
+}
+@media only screen and (max-width: 720px) {
+	#header {
+		padding: 30px;
+	}
+	#header .tab {
+		right: 30px;
+	}
+	.main_slider {
+		height: 560px;
+	}
+	.main_slider .swiper-container .swiper-slide[class*=list] .area {
+		left: 30px;
+		top: auto;
+		bottom: 0;
+		width: calc(100% - 60px);
+		height: 20vh;
+	}
+	.main_slider .keytext {
+		top: 5%;
+		width: calc(100% - 60px);
+	}
+	.main_slider .keytext .title {
+		font-size: 3em;
+	}
+	.main_slider .keytext .link {
+		margin-top: 15px;
+	}
+	.main_slider .shadow {
+		display: none;
+	}
+	.main_slider .swiper_control {
+		justify-content: space-between;
+		padding: 0 30px;
+		width: calc(100% - 60px);
+	}
+	.main_slider .swiper_control .progressbar {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 450px) {
+	.main_slider {
+		height: 500px;
+	}
+	.main_slider .keytext .title {
+		font-size: 2em;
+		font-weight: 400;
+	}
+	.main_slider .keytext .title::before {
+		top: -11px;
+	}
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+$(function(){
+	const offsetData={
+		shadowInfo: [
+			{left: "0%", width: "50%"},
+			{left: "50%", width: "40%"},
+			{left: "0%", width: "40%"},
+			{left: "0%", width: "30%"},
+			{left: "40%", width: "50%"}
+		],
+		textInfo: [
+			{left: "55%"},
+			{left: "5%"},
+			{left: "45%"},
+			{left: "35%"},
+			{left: "5%"}
+		]
+	};
+
+	const titleData=[
+		{
+			title: "<span>Wonder Place</span><span>Renewal<span>",
+			subject: "<dt>Responsible web</dt><dd><span>React Native</span><span>TypeScript</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
+		},
+		{
+			title: "<span>Anipen</span><span>Renewal<span>",
+			subject: "<dt>Responsible web</dt><dd><span>EcmaScript</span><span>AJAX</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
+		},
+		{
+			title: "<span>The Traum</span><span>Renewal<span>",
+			subject: "<dt>Responsible web</dt><dd><span>JavaScript Native</span><span>jQuery</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
+		},
+		{
+			title: "<span>Doosan Tommorow Lab</span><span>Renewal<span>",
+			subject: "<dt>Responsible web</dt><dd><span>jQuery</span><span>HTML5 + CSS3</span></dd>"
+		},
+		{
+			title: "<span>Tasty9</span><span>Renewal<span>",
+			subject: "<dt>Responsible web</dt><dd><span>jQuery</span><span>HTML5 + CSS3</span></dd>"
+		}
+	];
+
+	let current, total, winw;
+
+	let mainSwiper=new Swiper(".mainSwiper", {
+		allowTouchMove: false,
+		loop: true,
+		/*
+		autoplay: {
+			delay: 8000,
+			disableOnInteraction: false
+		},
+		*/
+		on: {
+			init: function(){
+				current=this.realIndex;
+				total=this.slides.length;
+
+				$(".main_slider .keytext").removeClass("active");
+				$(".main_slider .swiper_control .current").text("0"+(this.realIndex+1));
+				$(".main_slider .swiper_control .total").text("0"+this.slides.length);
+				$(".main_slider .progressbar span").delay(10).animate({width: "100%"}, 8000);
+
+				setTimeout(function(){
+					$(".main_slider .swiper-slide.list"+(current+1)).find(".area").addClass("active");
+					$(".main_slider .keytext").addClass("active");
+
+					if(winw > 720){
+						$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
+					}
+					else{
+						$(".main_slider .keytext").css({left: 30});
+					}
+
+					$(".main_slider .keytext .title").html(titleData[current].title);
+					$(".main_slider .keytext .subject dl").html(titleData[current].subject);
+					$(".main_slider .shadow").css({left: offsetData.shadowInfo[current].left, width: offsetData.shadowInfo[current].width});
+				}, 1200);
+			},
+			slideChange: function(){
+				current=this.realIndex;
+
+				$(".main_slider .swiper-slide .area").removeClass("active");
+				$(".main_slider .keytext").removeClass("active");
+				$(".main_slider .swiper_control .current").text("0"+(this.realIndex+1));
+				$(".main_slider .swiper_control .total").text("0"+this.slides.length);
+				$(".main_slider .progressbar span").stop().removeAttr("style");
+				$(".main_slider .progressbar span").delay(10).animate({width: "100%"}, 8000);
+
+				setTimeout(function(){
+					$(".main_slider .swiper-slide.list"+(current+1)).find(".area").addClass("active");
+					$(".main_slider .keytext").addClass("active");
+
+					if(winw > 720){
+						$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
+					}
+					else{
+						$(".main_slider .keytext").css({left: 30});
+					}
+
+					$(".main_slider .keytext .title").html(titleData[current].title);
+					$(".main_slider .keytext .subject dl").html(titleData[current].subject);
+					$(".main_slider .shadow").css({left: offsetData.shadowInfo[current].left, width: offsetData.shadowInfo[current].width});
+				}, 600);
+			}
+		}
+	});
+
+	$(window).resize(function(){
+		winw=$(window).width();
+
+		if(winw > 720){
+			$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
+		}
+		else{
+			$(".main_slider .keytext").css({left: 30});
+		}
+	});
+
+	$(window).trigger("resize");
+
+	$(".main_slider .page_control .bt_prev").click(function(e){
+		e.preventDefault();
+		mainSwiper.slidePrev();
+	});
+	$(".main_slider .page_control .bt_next").click(function(e){
+		e.preventDefault();
+		mainSwiper.slideNext();
+	});
+});
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+	<header id="header">
+		<div class="logo"><h1 id="logo">Portfolio</h1></div>
+		<a href="" class="tab">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+	</header>
+	<div class="main_slider">
+		<div class="swiper-container mainSwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide list1"><span class="area"><img src="images/main1.jpg" alt="main1"></span></div>
+				<div class="swiper-slide list2"><span class="area"><img src="images/main2.jpg" alt="main2"></span></div>
+				<div class="swiper-slide list3"><span class="area"><img src="images/main3.jpg" alt="main3"></span></div>
+				<div class="swiper-slide list4"><span class="area"><img src="images/main4.jpg" alt="main4"></span></div>
+				<div class="swiper-slide list5"><span class="area"><img src="images/main5.jpg" alt="main5"></span></div>
+			</div>
+			<div class="keytext">
+				<div class="title">Wonder Place<span>Renewal<span></div>
+				<div class="subject">
+					<dl>
+						<dt>Responsible web</dt>
+						<dd>
+							<span>HTML5 + CSS3</span>
+							<span>React Native</span>
+							<span>SASS</span>
+						</dd>
+					</dl>
+				</div>
+				<a href="" class="link">experience it</a>
+			</div>
+			<div class="shadow"></div>
+		</div>
+		<div class="swiper_control">
+			<span class="current">00</span>
+			<div class="progressbar"><span></span></div>
+			<span class="total">00</span>
+		</div>
+		<div class="page_control">
+			<a href="" class="bt_prev">prev</a>
+			<a href="" class="bt_next">next</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
