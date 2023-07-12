@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>portfolio :: Portfolio Mockup</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <style>
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
@@ -28,38 +28,42 @@ img {
 	vertical-align: top;
 	border: none;
 }
-body {
-	margin: 0;
-	padding: 0;
-	min-width: 320px;
-	font-family: "Roboto", "Noto Sans KR", serif;
-	font-size: 1em;
-	color: #000;
+:root {
+	--swiper-theme-color: #fff;
 }
-
-/* header */
+body {
+	line-height: 1;
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+}
+body.fixed {
+	overflow-y: hidden;
+}
 #header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	position: fixed;
 	z-index: 1000;
 	left: 0;
 	top: 0;
-	padding: 30px 50px;
+	padding: 30px;
 	width: 100%;
 	box-sizing: border-box;
 }
-#header .logo h1 {
+#header .logo {
 	line-height: 2;
 	text-transform: uppercase;
 	letter-spacing: 7.5px;
 	font-size: 0.913em;
 	font-weight: 400;
-	color: #222;
+	color: #fff;
+}
+#header.dark .logo {
+	color: #333;
 }
 #header .tab {
-	position: fixed;
-	right: 50px;
-	top: 30px;
-	z-index: 1001;
+	position: relative;
 	width: 30px;
 	height: 23px;
 }
@@ -68,8 +72,10 @@ body {
 	right: 0;
 	top: 0;
 	height: 2px;
-	background-color: #222;
-	transition: 0.3s;
+	background-color: #fff;
+}
+#header.dark .tab span {
+	background-color: #333;
 }
 #header .tab span:nth-child(1) {
 	width: 21px;
@@ -82,35 +88,128 @@ body {
 	top: 20px;
 	width: 30px;
 }
-#header .tab.active span:nth-child(1) {
-	top: 10px;
-	width: 30px;
-	transform: rotate(45deg);
-}
-#header .tab.active span:nth-child(2) {
-	display: none;
-}
-#header .tab.active span:nth-child(3) {
-	top: 10px;
-	width: 30px;
-	transform: rotate(-45deg);
-}
-
-/* main slider */
-.main_slider {
-	position: relative;
-	margin: 0 auto;
-	margin-top: 15vh;
-	max-width: 1320px;
-	height: 70vh;
-	overflow: visible;
-}
-.main_slider .swiper-container {
-	position: relative;
+.total {
+	position: fixed;
+	right: 0;
+	top: 0;
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
+	overflow-y: auto;
+	background-color: rgba(0,0,0,.9);
+	box-sizing: border-box;
+	clip-path: circle(0 at 90% 50px);
+	transition: clip-path 0.5s ease-out;
+	pointer-events: none
+}
+.total.active {
+	clip-path: circle(200% at 90% 50px);
+	pointer-events: all
+}
+.total .inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	text-align: center;
+}
+.total .close {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+.total .close img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+}
+.total .close p {
+	display: block;
+	padding-top: 12px;
+	font-size: 0.75em;
+	color: #fff;
+}
+.total .menu li a {
+	display: block;
+	position: relative;
+	margin-bottom: 20px;
+	line-height: 1.8em;
+	letter-spacing: 2px;
+	font-size: 2em;
+	font-weight: 300;
+	color: rgba(255,255,255,.65);
+	transition: color 0.3s;
+}
+.total .menu li:hover a,
+.total .menu li.active a {
+	color: #fff;
+}
+.total .menu li:hover a::after,
+.total .menu li.active a::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 29px;
+	height: 1px;
+	background-color: #fff;
+	transform: translateX(-50%);
+}
+.total .etc {
+	padding-top: 30px;
+}
+.total .etc .utils ul li {
+	display: inline-block;
+	padding: 0 6px;
+}
+.total .etc .utils ul li a {
+	letter-spacing: 2px;
+	font-size: 0.75em;
+	font-weight: 300;
+	color: rgba(255,255,255,.65);
+}
+.total .etc .sns ul {
+	display: flex;
+	justify-content: center;
+	padding-top: 18px;
+}
+.total .etc .sns ul li {
+	padding: 0 10px;
+}
+.total .etc .sns ul li a {
+	display: block;
+	width: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 0.875em;
+	font-weight: 500;
+	color: rgba(255,255,255,.65);
+	border: 1px solid rgba(255,255,255,.65);
+	border-radius: 50%;
+}
+.main_slider {
+	position: relative;
+	height: 100vh;
+	overflow-x: hidden;
+}
+.main_slider::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 0;
+	z-index: 10;
+	width: 1px;
+	height: 100%;
+	background-color: rgba(255,255,255,.1);
+}
+.main_slider .swiper-container {
+	width: 100%;
+	height: 100%;
 }
 .main_slider .swiper-container .swiper-slide {
 	display: flex;
@@ -119,398 +218,553 @@ body {
 	overflow: hidden;
 	text-align: center;
 	font-size: 1.125em;
-	background-color: transparent;
-}
-.main_slider .swiper-container .swiper-slide.list1 .area {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-}
-.main_slider .swiper-container .swiper-slide.list2 .area {
-	position: absolute;
-	left: 50%;
-	top: 0;
-	width: 40%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-}
-.main_slider .swiper-container .swiper-slide.list3 .area {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 40%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-}
-.main_slider .swiper-container .swiper-slide.list4 .area {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 30%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-}
-.main_slider .swiper-container .swiper-slide.list5 .area {
-	position: absolute;
-	left: 40%;
-	top: 0;
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-}
-.main_slider .swiper-container .swiper-slide .area.active {
-	opacity: 1;
-	transition: opacity 0.6s ease-out;
-	transition-delay: 1.2s;
+	background-color: #fff;
 }
 .main_slider .swiper-container .swiper-slide img {
 	display: block;
 	width: 100%;
 	height: 100%;
-	-webkit-user-select: none;
 	object-fit: cover;
-	user-select: none;
-	-webkit-user-drag: none;
-	user-drag: none;
 }
-.main_slider .shadow {
+.main_slider .swiper-container .content_box {
 	position: absolute;
-	left: 0;
-	top: 0;
-	width: 0;
-	height: 100%;
-	background-color: #eee;
-	transition: 0.6s ease-out;
-}
-.main_slider .keytext {
-	position: absolute;
-	left: 0;
-	top: 12%;
-	z-index: 1000;
-	width: 40%;
-	color: #222;
-	opacity: 0;
-	user-select: none;
-}
-.main_slider .keytext.active {
-	opacity: 1;
-	transition: opacity 0.6s ease-out;
-	transition-delay: 1.2s;
-}
-.main_slider .keytext .title {
-	position: relative;
-	margin-bottom: 25px;
-	width: 100%;
-	line-height: 1.35;
-	font-family: "Merriweather", "Noto Sans KR", serif;
-	font-size: 3.25em;
-	font-weight: 700;
-}
-.main_slider .keytext .title span {
-	display: inline-block;
-	width: 100%;
-}
-.main_slider .keytext .title::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: -7px;
-	width: 7px;
-	height: 7px;
-	border: 3px solid #222;
-	border-radius: 50%;
-}
-.main_slider .keytext .subject {
-	line-height: 2;
-	font-size: 0.875em;
-	font-weight: 300;
-}
-.main_slider .keytext .subject dt {
-	display: block;
-	margin-bottom: 15px;
-	text-transform: lowercase;
-	letter-spacing: 7.5px;
-	font-weight: 700;
-}
-.main_slider .keytext .subject dd span {
-	display: inline-block;
-	margin: 0 5px 5px 0;
-	padding: 0 14px;
-	line-height: 28px;
-	font-weight: 300;
-	background-color: #f5f5f5;
-}
-.main_slider .keytext .link {
-	display: block;
-	position: relative;
-	margin-top: 70px;
-	padding-right: 10px;
-	width: 85px;
-	font-size: 0.875em;
-	color: #222;
-}
-.main_slider .keytext .link::after {
-	content: "";
-	position: absolute;
-	right: 3px;
+	left: 50%;
 	top: 50%;
-	margin-top: -3px;
-	width: 6px;
-	height: 6px;
-	border-left: 2px solid #222;
-	border-bottom: 2px solid #222;
-	transform: rotate(225deg);
+	z-index: 100;
+	width: 1100px;
+	text-align: left;
+	color: #fff;
+	user-select: none;
+	text-shadow: 1px 1px 6px rgba(0,0,0,.2);
+	transform: translate(-50%,-50%);
+}
+.main_slider .swiper-container .content_box strong {
+	display: block;
+	line-height: 1.2;
+	font-size: 4vw;
+	font-weight: 700;
+	color: #fff;
+	opacity: 0;
+	transform: translateY(50px);
+	transition: opacity 0.5s, transform 0.8s;
+	transition-delay: 0.6s;
+}
+.main_slider .swiper-container .content_box span {
+	display: block;
+	margin-top: 16px;
+	line-height: 1.6;
+	font-size: 1em;
+	font-weight: 300;
+	color: #fff;
+	opacity: 0;
+	transform: translateY(50px);
+	transition: opacity 0.5s, transform 0.8s;
+	transition-delay: 0.8s;
+}
+.main_slider .swiper-container .content_box.active strong,
+.main_slider .swiper-container .content_box.active span {
+	opacity: 1;
+	transform: translateY(0);
+}
+.main_slider .direction a.prev {
+	display: none;
+	position: absolute;
+	left: 5%;
+	top: 50%;
+	z-index: 10;
+	width: 150px;
+	height: 150px;
+	transform: translateY(-50%);
+	transition: 0.3s;
+}
+.main_slider .direction a.prev.visible {
+	display: block;
+}
+.main_slider .direction a.next {
+	display: none;
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	z-index: 10;
+	width: 150px;
+	height: 150px;
+	transform: translateY(-50%);
+	transition: 0.3s;
+}
+.main_slider .direction a.next.visible {
+	display: block;
+}
+.main_slider .direction a p {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	font-size: 0.875em;
+	font-weight: 500;
+	color: #eaeaea;
+	transform: translate(-50%,-50%);
+}
+.main_slider .direction span.prev_top {
+	position: absolute;
+	left: 0;
+	top: 30%;
+	width: 4px;
+	height: 35px;
+	background-color: #fff;
+	transition: 0.3s;
+}
+.main_slider .direction span.prev_bottom {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 4px;
+	height: 35px;
+	background-color: #fff;
+	transition: 0.3s;
+}
+.main_slider .direction span.next_top {
+	position: absolute;
+	right: 0;
+	top: 30%;
+	width: 4px;
+	height: 35px;
+	background-color: #fff;
+	transition: 0.3s;
+}
+.main_slider .direction span.next_bottom {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 4px;
+	height: 35px;
+	background-color: #fff;
+	transition: 0.3s;
+}
+.main_slider .direction a.prev:hover span.prev_top {
+	top: 33%;
+	height: 31px;
+	transform: rotate(45deg);
+}
+.main_slider .direction a.prev:hover span.prev_bottom {
+	top: 47%;
+	height: 31px;
+	transform: rotate(-45deg);
+}
+.main_slider .direction a.next:hover span.next_top {
+	top: 33%;
+	height: 31px;
+	transform: rotate(-45deg);
+}
+.main_slider .direction a.next:hover span.next_bottom {
+	top: 47%;
+	height: 31px;
+	transform: rotate(45deg);
 }
 .main_slider .swiper_control {
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	position: absolute;
-	left: 0;
-	bottom: -60px;
-	width: 100%;
-	height: 40px;
+	left: 50%;
+	bottom: 120px;
+	z-index: 100;
+	width: 1100px;
+	transform: translateX(-50%);
 }
-.main_slider .swiper_control .current,
-.main_slider .swiper_control .total {
-	font-size: 0.813em;
-	font-weight: 700;
-	color: #222;
+.main_slider .swiper_control.invisible {
+	display: none;
+}
+.main_slider .swiper_control .account {
+	font-size: 0.75em;
+	color: #fff;
+	pointer-events: none;
 }
 .main_slider .swiper_control .current {
-	margin-right: 15px;
-}
-.main_slider .swiper_control .total {
-	margin-left: 15px;
+	font-weight: 500;
 }
 .main_slider .swiper_control .progressbar {
 	position: relative;
-	width: 240px;
-	height: 1px;
-	background-color: #ccc;
+	margin-left: 12px;
+	width: 150px;
+	height: 2px;
+	background-color: rgba(255,255,255,.1);
 }
 .main_slider .swiper_control .progressbar span {
 	position: absolute;
 	left: 0;
-	top: 0;
 	width: 0;
 	height: 1px;
-	background-color: #222;
+	background-color: #fff;
 }
-.main_slider .page_control a {
-	position: fixed;
-	top: 50%;
+#pause_play {
+	margin-left: 15px;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+#pause_play.pause {
+	background: url(images/btn_pause.png) no-repeat 0 0;
+}
+#pause_play.play {
+	background: url(images/btn_play.png) no-repeat 0 0;
+}
+.main_slider .profile_list {
+	display: flex;
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+	z-index: 1000;
+}
+.main_slider .profile_list ul {
+	display: flex;
+}
+.main_slider .profile_list li {
+	position: relative;
+	padding: 0 18px;
+}
+.main_slider .profile_list li:last-child {
+	padding-right: 0;
+}
+.main_slider .profile_list li::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 3px;
+	width: 1px;
+	height: 12px;
+	background-color: rgba(255,255,255,.32);
+}
+.main_slider .profile_list li:last-child::after {
+	display: none;
+}
+.main_slider .profile_list li a {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.688em;
+	font-weight: 300;
+	color: #fff;
+}
+.main_slider .profile_list li a i {
+	font-size: 1rem;
+}
+.motion_text div[class^=text] {
+	position: absolute;
+	left: 50%;
+	bottom: 30px;
 	z-index: 10;
-	letter-spacing: 9px;
-	font-size: 0.913em;
-	font-weight: 700;
-	writing-mode: vertical-rl;
+	transform: translateX(-50%);
 }
-.main_slider .page_control a.bt_prev {
-	left: 20px;
-	transform: translateY(-50%) rotate(-180deg);
+.motion_text div[class^=text] span {
+	display: inline-block;
+	font-size: 0.75em;
+	color: #fff;
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: opacity 0.5s, transform 0.8s;
+	transition-delay: 0.8s;
 }
-.main_slider .page_control a.bt_next {
-	right: 20px;
-	transform: translateY(-50%);
+.motion_text div[class^=text].active span {
+	opacity: 1;
+	transform: translateX(0);
+}
+.motion_text div[class^=text].active span:nth-of-type(1) {
+	transition-delay: 0.8s;
+}
+.motion_text div[class^=text].active span:nth-of-type(2) {
+	transition-delay: 0.9s;
+}
+.motion_text div[class^=text].active span:nth-of-type(3) {
+	transition-delay: 1s;
+}
+.motion_text div[class^=text].active span:nth-of-type(4) {
+	transition-delay: 1.1s;
+}
+.motion_text div[class^=text].active span:nth-of-type(5) {
+	transition-delay: 1.2s;
+}
+.motion_text div[class^=text].active span:nth-of-type(6) {
+	transition-delay: 1.3s;
+}
+.motion_text div[class^=text].active span:nth-of-type(7) {
+	transition-delay: 1.4s;
+}
+.motion_text div[class^=text].active span:nth-of-type(8) {
+	transition-delay: 1.5s;
+}
+.motion_text div[class^=text].active span:nth-of-type(9) {
+	transition-delay: 1.6s;
+}
+.motion_text div[class^=text].active span:nth-of-type(10) {
+	transition-delay: 1.7s;
 }
 
-@media only screen and (max-width: 1440px) {
-	.main_slider .page_control a {
+@media only screen and (max-width: 1520px) {
+	.main_slider .direction a p {
 		display: none;
 	}
 }
-@media only screen and (max-width: 720px) {
-	#header {
-		padding: 30px;
+@media only screen and (max-width: 1280px) {
+	.main_slider .direction a.prev,
+	.main_slider .direction a.prev.visible,
+	.main_slider .direction a.next,
+	.main_slider .direction a.next.visible {
+		display: none;
 	}
-	#header .tab {
-		right: 30px;
+}
+@media only screen and (max-width: 1120px) {
+	.main_slider .swiper-container .content_box {
+		padding: 0 30px;
+		width: 100%;
+		box-sizing: border-box;
 	}
-	.main_slider {
-		height: 560px;
-	}
-	.main_slider .swiper-container .swiper-slide[class*=list] .area {
-		left: 30px;
-		top: auto;
-		bottom: 0;
-		width: calc(100% - 60px);
-		height: 20vh;
-	}
-	.main_slider .keytext {
-		top: 5%;
-		width: calc(100% - 60px);
-	}
-	.main_slider .keytext .title {
+	.main_slider .swiper-container .content_box strong {
 		font-size: 3em;
 	}
-	.main_slider .keytext .link {
-		margin-top: 15px;
-	}
-	.main_slider .shadow {
-		display: none;
-	}
 	.main_slider .swiper_control {
-		justify-content: space-between;
-		padding: 0 30px;
 		width: calc(100% - 60px);
 	}
-	.main_slider .swiper_control .progressbar {
-		width: 100%;
+}
+@media only screen and (max-width: 820px) {
+	.main_slider .profile_list {
+		display: none;
 	}
 }
-@media only screen and (max-width: 450px) {
-	.main_slider {
-		height: 500px;
-	}
-	.main_slider .keytext .title {
-		font-size: 2em;
-		font-weight: 400;
-	}
-	.main_slider .keytext .title::before {
-		top: -11px;
-	}
+
+#page1 {
+	height: 600px;
+}
+#page2 {
+	height: 2000px;
+	background-color: #333;
+}
+#contact {
+	height: 1000px;
 }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@terwanerik/scrolltrigger@1.0.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 $(function(){
-	const offsetData={
-		shadowInfo: [
-			{left: "0%", width: "50%"},
-			{left: "50%", width: "40%"},
-			{left: "0%", width: "40%"},
-			{left: "0%", width: "30%"},
-			{left: "40%", width: "50%"}
-		],
-		textInfo: [
-			{left: "55%"},
-			{left: "5%"},
-			{left: "45%"},
-			{left: "35%"},
-			{left: "5%"}
-		]
-	};
+	let n=0;
+	let pos=0;
 
-	const titleData=[
-		{
-			title: "<span>Wonder Place</span><span>Renewal<span>",
-			subject: "<dt>Responsible web</dt><dd><span>React Native</span><span>TypeScript</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
-		},
-		{
-			title: "<span>Anipen</span><span>Renewal<span>",
-			subject: "<dt>Responsible web</dt><dd><span>EcmaScript</span><span>AJAX</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
-		},
-		{
-			title: "<span>The Traum</span><span>Renewal<span>",
-			subject: "<dt>Responsible web</dt><dd><span>JavaScript Native</span><span>jQuery</span><span>SASS</span><span>HTML5 + CSS3</span></dd>"
-		},
-		{
-			title: "<span>Doosan Tommorow Lab</span><span>Renewal<span>",
-			subject: "<dt>Responsible web</dt><dd><span>jQuery</span><span>HTML5 + CSS3</span></dd>"
-		},
-		{
-			title: "<span>Tasty9</span><span>Renewal<span>",
-			subject: "<dt>Responsible web</dt><dd><span>jQuery</span><span>HTML5 + CSS3</span></dd>"
+	function scrollInteraction(t){
+		if(t < $("#page1").offset().top){
+			n=0;
 		}
-	];
+		else if(t < $("#page2").offset().top){
+			n=1;
+		}
+		else if(t < $("#contact").offset().top){
+			n=2;
+		}
+		else{
+			n=3;
+		}
 
-	let current, total, winw;
+		for(let i=0; i<$(".menu li").length; i++){
+			if(i == n){
+				$(".menu li").eq(i).addClass("active");
+			}
+			else{
+				$(".menu li").eq(i).removeClass("active");
+			}
+		}
 
-	let mainSwiper=new Swiper(".mainSwiper", {
-		allowTouchMove: false,
-		loop: true,
-		/*
+		if(n == 1 || n == 3){
+			$("#header").addClass("dark");
+		}
+		else{
+			$("#header").removeClass("dark");
+		}
+	}
+
+	const trigger=new ScrollTrigger.default({
+		trigger: {
+			once: true,
+			toggle: {
+				class: {
+					in: "active",
+					out: "inactive"
+				}
+			},
+			offset: {
+				viewport: {
+					x: 0,
+					y: 0.25
+				}
+			}
+		},
+		scroll: {
+			element: window,
+			callback: (offset, dir) => { scrollInteraction(offset.y); }
+		}
+	});
+
+	trigger.add(".main_slider, section[id^=page], #contact");
+
+	$(".menu li").click(function(e){
+		e.preventDefault();
+
+		n=$(this).index();
+
+		if(n == 0){
+			pos=0;
+		}
+		else if(n == $(".menu li").length-1){
+			pos=Math.round($("#contact").offset().top);
+		}
+		else{
+			pos=Math.round($("#page"+n).offset().top);
+		}
+
+		$("#header").removeClass("active");
+		$(".total").removeClass("active");
+
+		setTimeout(function(){
+			$("body").removeClass("fixed");
+			$("html").animate({scrollTop: pos}, 600);
+		}, 500);
+	});
+	$("#header .tab").click(function(e){
+		e.preventDefault();
+
+		$("body").addClass("fixed");
+
+		setTimeout(function(){
+			$("#header").addClass("active");
+			$(".total").addClass("active");
+		}, 50);
+	});
+	$(".total .close").click(function(e){
+		e.preventDefault();
+
+		$("#header").removeClass("active");
+		$(".total").removeClass("active");
+
+		setTimeout(function(){
+			$("body").removeClass("fixed");
+		}, 50);
+	});
+
+	let mainCurrent, mainTotal;
+
+	var mainSwiper=new Swiper(".mainSwiper", {
+		speed: 1000,
+		loop: false,
 		autoplay: {
-			delay: 8000,
+			delay: 5000,
 			disableOnInteraction: false
 		},
-		*/
 		on: {
 			init: function(){
-				current=this.realIndex;
-				total=this.slides.length;
-
-				$(".main_slider .keytext").removeClass("active");
-				$(".main_slider .swiper_control .current").text("0"+(this.realIndex+1));
-				$(".main_slider .swiper_control .total").text("0"+this.slides.length);
-				$(".main_slider .progressbar span").delay(10).animate({width: "100%"}, 8000);
+				mainCurrent=this.activeIndex;
+				// mainCurrent=this.realIndex;
+				mainTotal=this.slides.length;
+				$(".main_slider .account .current").text(mainCurrent+1);
+				$(".main_slider .account .length").text(mainTotal);
+				$(".main_slider .direction a.prev").removeClass("visible");
+				$(".main_slider .direction a.next").addClass("visible");
 
 				setTimeout(function(){
-					$(".main_slider .swiper-slide.list"+(current+1)).find(".area").addClass("active");
-					$(".main_slider .keytext").addClass("active");
-
-					if(winw > 720){
-						$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
-					}
-					else{
-						$(".main_slider .keytext").css({left: 30});
-					}
-
-					$(".main_slider .keytext .title").html(titleData[current].title);
-					$(".main_slider .keytext .subject dl").html(titleData[current].subject);
-					$(".main_slider .shadow").css({left: offsetData.shadowInfo[current].left, width: offsetData.shadowInfo[current].width});
-				}, 1200);
+					$(".main_slider .swiper-slide-active .content_box").addClass("active");
+					$(".main_slider .progressbar span").animate({width: "100%"}, 6000);
+				}, 50);
 			},
 			slideChange: function(){
-				current=this.realIndex;
-
-				$(".main_slider .swiper-slide .area").removeClass("active");
-				$(".main_slider .keytext").removeClass("active");
-				$(".main_slider .swiper_control .current").text("0"+(this.realIndex+1));
-				$(".main_slider .swiper_control .total").text("0"+this.slides.length);
+				mainCurrent=this.activeIndex;
+				// mainCurrent=this.realIndex;
+				$(".main_slider .account .current").text(mainCurrent+1);
+				$(".main_slider .content_box").removeClass("active");
 				$(".main_slider .progressbar span").stop().removeAttr("style");
-				$(".main_slider .progressbar span").delay(10).animate({width: "100%"}, 8000);
+
+				switch(mainCurrent){
+					case 0 :
+						$(".main_slider .direction a.prev").removeClass("visible");
+						$(".main_slider .direction a.next").addClass("visible");
+						break;
+					case this.slides.length-1 :
+						$(".main_slider .direction a.prev").addClass("visible");
+						$(".main_slider .direction a.next").removeClass("visible");
+						break;
+					default:
+						$(".main_slider .direction a.prev").addClass("visible");
+						$(".main_slider .direction a.next").addClass("visible");
+						break;
+				}
 
 				setTimeout(function(){
-					$(".main_slider .swiper-slide.list"+(current+1)).find(".area").addClass("active");
-					$(".main_slider .keytext").addClass("active");
-
-					if(winw > 720){
-						$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
+					$(".main_slider .swiper-slide-active .content_box").addClass("active");
+	
+					if($("#pause_play").hasClass("pause")){
+						$(".main_slider .progressbar span").animate({width: "100%"}, 6000);
 					}
 					else{
-						$(".main_slider .keytext").css({left: 30});
+						$(".main_slider .progressbar span").removeAttr("style");
 					}
-
-					$(".main_slider .keytext .title").html(titleData[current].title);
-					$(".main_slider .keytext .subject dl").html(titleData[current].subject);
-					$(".main_slider .shadow").css({left: offsetData.shadowInfo[current].left, width: offsetData.shadowInfo[current].width});
-				}, 600);
+				}, 50);
 			}
 		}
 	});
 
-	$(window).resize(function(){
-		winw=$(window).width();
+	$(".main_slider .direction .prev").click(function(e){
+		e.preventDefault();
+		mainSwiper.slidePrev();
+	});
+	$(".main_slider .direction .next").click(function(e){
+		e.preventDefault();
+		mainSwiper.slideNext();
+	});
+	$("#pause_play").click(function(e){
+		e.preventDefault();
 
-		if(winw > 720){
-			$(".main_slider .keytext").css({left: offsetData.textInfo[current].left});
+		if($(this).hasClass("play")){
+			$(this).removeAttr("class");
+			$(this).addClass("pause");
+			$(this).text("pause");
+			mainSwiper.autoplay.start();
+			$(".main_slider .progressbar span").stop().removeAttr("style");
+
+			setTimeout(function(){
+				$(".main_slider .progressbar span").animate({width: "100%"}, 6000);
+			}, 50);
 		}
 		else{
-			$(".main_slider .keytext").css({left: 30});
+			$(this).removeAttr("class");
+			$(this).addClass("play");
+			$(this).text("play");
+			mainSwiper.autoplay.stop();
+			$(".main_slider .progressbar span").stop();
+		}
+	});
+	$(window).resize(function(){
+		if($(window).height() < 620){
+			$(".main_slider .swiper_control").addClass("invisible");
+		}
+		else{
+			$(".main_slider .swiper_control").removeClass("invisible");
 		}
 	});
 
 	$(window).trigger("resize");
 
-	$(".main_slider .page_control .bt_prev").click(function(e){
-		e.preventDefault();
-		mainSwiper.slidePrev();
-	});
-	$(".main_slider .page_control .bt_next").click(function(e){
-		e.preventDefault();
-		mainSwiper.slideNext();
-	});
+	let timerN=1;
+
+	setTimeout(function(){
+		$(".motion_text .text"+timerN).addClass("active");
+	}, 50);
+
+	let textTimer=setInterval(function(){
+		if(timerN < 2){
+			timerN++;
+		}
+		else{
+			timerN=1;
+		}
+
+		$(".motion_text div[class^=text]").removeClass("active");
+		$(".motion_text .text"+timerN).addClass("active");
+	}, 5000);
 });
 </script>
 </head>
@@ -518,48 +772,120 @@ $(function(){
 <body>
 <div class="wrapper">
 	<header id="header">
-		<div class="logo"><h1 id="logo">Portfolio</h1></div>
+		<a href="" class="logo">portfolio</a>
 		<a href="" class="tab">
 			<span></span>
 			<span></span>
 			<span></span>
 		</a>
 	</header>
+	<div class="total">
+		<div class="inner">
+			<a href="" class="close">
+				<img src="images/allMenu_xBt.png" alt="">
+				<p>CLOSE</p>
+			</a>
+			<ul class="menu">
+				<li><a href="">HOME</a></li>
+				<li><a href="">ABOUT</a></li>
+				<li><a href="">WORK</a></li>
+				<li><a href="">CONTACT</a></li>
+			</ul>
+			<div class="etc">
+				<div class="utils">
+					<ul>
+						<li><a href="">COMPANY</a></li>
+						<li><a href="">NEWS</a></li>
+					</ul>
+				</div>
+				<div class="sns">
+					<ul>
+						<li><a href="">B</a></li>
+						<li><a href="">F</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="main_slider">
 		<div class="swiper-container mainSwiper">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide list1"><span class="area"><img src="images/main1.jpg" alt="main1"></span></div>
-				<div class="swiper-slide list2"><span class="area"><img src="images/main2.jpg" alt="main2"></span></div>
-				<div class="swiper-slide list3"><span class="area"><img src="images/main3.jpg" alt="main3"></span></div>
-				<div class="swiper-slide list4"><span class="area"><img src="images/main4.jpg" alt="main4"></span></div>
-				<div class="swiper-slide list5"><span class="area"><img src="images/main5.jpg" alt="main5"></span></div>
-			</div>
-			<div class="keytext">
-				<div class="title">Wonder Place<span>Renewal<span></div>
-				<div class="subject">
-					<dl>
-						<dt>Responsible web</dt>
-						<dd>
-							<span>HTML5 + CSS3</span>
-							<span>React Native</span>
-							<span>SASS</span>
-						</dd>
-					</dl>
+				<div class="swiper-slide">
+					<img src="images/main1.png" alt="main1">
+					<div class="content_box">
+						<strong>PRESTIGE OF LIFE</strong>
+						<span>롯데캐슬 웹사이트 리뉴얼</span>
+					</div>
 				</div>
-				<a href="" class="link">experience it</a>
+				<div class="swiper-slide">
+					<img src="images/main2.png" alt="main2">
+					<div class="content_box">
+						<strong>LOTTE DUTY FREE Website Renewal</strong>
+						<span>롯데캐슬 면세점 홍보사이트 리뉴얼</span>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="images/main3.png" alt="main3">
+					<div class="content_box">
+						<strong>The Hyundai Travel</strong>
+						<span>더현대트래블 웹사이트 구축</span>
+					</div>
+				</div>
 			</div>
-			<div class="shadow"></div>
+			<div class="direction">
+				<a href="" class="prev">
+					<p>PREV</p>
+					<span class="prev_top"></span>
+					<span class="prev_bottom"></span>
+				</a>
+				<a href="" class="next">
+					<p>NEXT</p>
+					<span class="next_top"></span>
+					<span class="next_bottom"></span>
+				</a>
+			</div>
+			<div class="swiper_control">
+				<div class="account">
+					<span class="current"></span> / <span class="length"></span>
+				</div>
+				<div class="progressbar"><span></span></div>
+				<a href="" id="pause_play" class="pause">pause</a>
+			</div>
 		</div>
-		<div class="swiper_control">
-			<span class="current">00</span>
-			<div class="progressbar"><span></span></div>
-			<span class="total">00</span>
+		<div class="motion_text">
+			<div class="text1">
+				<span>J</span>
+				<span>A</span>
+				<span>V</span>
+				<span>A</span>
+				<span>S</span>
+				<span>C</span>
+				<span>R</span>
+				<span>I</span>
+				<span>P</span>
+				<span>T</span>
+			</div>
+			<div class="text2">
+				<span>R</span>
+				<span>E</span>
+				<span>A</span>
+				<span>C</span>
+				<span>T</span>
+			</div>
 		</div>
-		<div class="page_control">
-			<a href="" class="bt_prev">prev</a>
-			<a href="" class="bt_next">next</a>
+		<div class="profile_list">
+			<ul>
+				<li><a href="" target="portfolio">PDF <span>Download</span></a></li>
+				<li><a href="" target="portfolio"><i class="fa-brands fa-instagram"></i></a></li>
+				<li><a href="" target="portfolio"><i class="fa-brands fa-codepen"></i></a></li>
+				<li><a href="" target="portfolio"><i class="fa-brands fa-github"></i></a></li>
+				<li><a href="" target="portfolio"><i class="fa-brands fa-figma"></i></a></li>
+			</ul>
 		</div>
 	</div>
+	<section id="page1"></section>
+	<section id="page2"></section>
+	<section id="contact"></section>
 </div>
 </body>
 </html>

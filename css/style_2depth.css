@@ -25,148 +25,45 @@
 /* header------------------------------------- */
 #header .header_inner{
 	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	top:0;
 	width:100%;
 	height:60px;
 	z-index: 1000;
+	padding:0px 40px;
+	box-sizing: border-box;
 	background: transparent;
 }
-#header.active .header_inner{
-	background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.546875) 55.21%, rgba(255, 255, 255, 0.21596) 87.5%, rgba(255, 255, 255, 0) 100%);
-}
-#header .header_inner h1{
-	position: fixed;
-	top:40px;
-	left:40px;
-	z-index: 10000;
+#header .header_inner.active{
+	background-color: #fff;
+	box-shadow: 1px 1px 1px #ccc;
 }
 #header .header_inner h1 a{
-	display: block;
+	font-size: 18px;
 	font-weight: 500;
-	font-size: 20px;
-	line-height: 12px;
 	color:#fff;
 }
-#header.active .header_inner h1 a{
+#header .header_inner.active h1 a{
 	color:#222;
-}
-#header .header_inner .gnbwrap{
-	transition: all 0.3s;
-}
-#header .header_inner .gnbwrap.on{
-	position: fixed;
-	z-index: 9999;
-	width:100%;
-	height:100%;
-	background-color: #73C5D7;
-}
-#header .header_inner .gnbwrap .gnb_toggle{
-	position: fixed;
-	z-index: 10000;
-	right:40px;
-	top:40px;
-	width:18px;
-	height:14px;
-	cursor: pointer;
-}
-#header .header_inner .gnbwrap .gnb_toggle span{
-	position: absolute;
-	left:0;
-	width:100%;
-	height:2px;
-	background-color: #fff;
-}
-#header .header_inner .gnbwrap .gnb_toggle.on{
-	padding:10px;
-}
-#header.active .header_inner .gnbwrap .gnb_toggle span{
-	background-color: #222;
-}
-#header .header_inner .gnbwrap .gnb_toggle.black span{
-	background-color: #222;
-}
-#header .header_inner .gnbwrap .gnb_toggle span:nth-child(1){
-	top:0;
-	transition: transform 0.5s;
-}
-#header .header_inner .gnbwrap .gnb_toggle span:nth-child(2){
-	top:50%;
-	transform: translateY(-50%);
-}
-#header .header_inner .gnbwrap .gnb_toggle span:nth-child(3){
-	bottom:0;
-	transition: transform 0.5s;
-}
-#header .header_inner .gnbwrap .gnb_toggle.on span:nth-child(1){
-	top:45%;
-	transform: rotate(45deg);
-	transition: transform 0.5s;
-}
-#header .header_inner .gnbwrap .gnb_toggle.on span:nth-child(2){
-	display: none;
-}
-#header .header_inner .gnbwrap .gnb_toggle.on span:nth-child(3){
-	top:45%;
-	transform: rotate(-45deg);
-	transition: transform 0.3s;
-}
-#gnb{
-	position: fixed;
-	z-index: 10000;
-	top:50%;
-	left:50%;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	display: none;
-}
-#gnb > ul > li{
-	line-height: 100px;
-}
-#gnb > ul > li > a{
-	display: block;
-	font-weight: 700;
-	font-size: 40px;
-	color:#fff;
-	transition: all 0.3s;
-}
-#gnb > ul > li > a:hover{
-	color:#222;
-	border-top:6px solid #222;
-	border-bottom:6px solid #222;
-}
-body.fixed{
-	position: fixed;
-	z-index: 9999;
-	width:100vw;
-	height:100vh;
-	overflow: hidden;
-}
-@media only screen and (max-width:1230px){
-	#header .header_inner h1{
-		top:20px;
-		left:20px;
-	}
-	#header .header_inner h1 a{
-		font-size: 16px;
-	}
-	#header .header_inner .gnbwrap .gnb_toggle{
-		top:20px;
-		right:20px;
-	}
 }
 
 
 /*section 공통-------------------*/
 section[id^=port]{
 	width:100%;
+	overflow: hidden;
 }
 section[id^=port] .inner{
 	padding:100px 347px;
 	box-sizing: border-box;
+	opacity: 0;
 	transform: translateY(500px);
-	transition: all 0.3s;
+	transition: all 0.8s;
 }
-section[id^=port] .inner.visible{
+section[id^=port].visible .inner{
+	opacity: 1;
 	transform: translateY(0%);
 }
 section[id^=port] .inner .scrolldown{
@@ -206,11 +103,6 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	100% { transform: translate(-50%,0); }
 }
 @media only screen and (max-width:1230px){
-	section[id^=port] .bigtit{
-		top:160px;
-		left:18px;
-		z-index: 1;
-	}
 	section[id^=port] .inner{
 		padding:80px 18px;
 	}
