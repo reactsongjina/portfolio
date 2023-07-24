@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", function(){
 
     function scrollInteraction(t){
-		if(t>200){
+		if(t>600){
 			header.classList.add("active");
 		}else{
 			header.classList.remove("active");

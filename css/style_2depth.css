@@ -36,17 +36,23 @@
 	box-sizing: border-box;
 	background: transparent;
 }
-#header .header_inner.active{
+#header.active .header_inner{
 	background-color: #fff;
 	box-shadow: 1px 1px 1px #ccc;
+	transition: 0.5s;
 }
 #header .header_inner h1 a{
 	font-size: 18px;
 	font-weight: 500;
 	color:#fff;
 }
-#header .header_inner.active h1 a{
+#header.active .header_inner h1 a{
 	color:#222;
+}
+@media only screen and (max-width:1230px){
+	#header .header_inner{
+		padding:0px 18px;
+	}
 }
 
 
@@ -212,8 +218,8 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 		text-align: center;
 	}
 	#port1 .inner .inner_in .left > a{
+		margin-bottom: 50px;
 		font-size: 14px;
-		transform: translateY(280px);
 	}
 	#port1 .inner .inner_in .left > p{
 		margin-top: 0;
@@ -298,7 +304,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	position: relative;
 	text-align: center;
 	color:#fff;
-	background-color: #73C5D7;
+	background-color: #555;
 }
 #port3::after{
 	content: "";
@@ -441,7 +447,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	font-size: 150px;
 	line-height: 160px;
 	margin-bottom: 56px;
-	color:#73C5D7;
+	color:#555;
 }
 #port4 .inner > h3{
 	font-weight: 700;
@@ -493,7 +499,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	font-weight: 900;
 	font-size: 150px;
 	line-height: 160px;
-	color:#73C5D7;
+	color:#555;
 	margin-bottom: 56px;
 }
 #port5 .inner > h3{
@@ -563,7 +569,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	font-weight: 900;
 	font-size: 150px;
 	line-height: 160px;
-	color:#73C5D7;
+	color:#555;
 	margin-bottom: 56px;
 }
 #port6 .inner > h3{
@@ -622,7 +628,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	font-weight: 900;
 	font-size: 150px;
 	line-height: 160px;
-	color:#73C5D7;
+	color:#555;
 	margin-bottom: 56px;
 }
 #port7 .inner > h3{
@@ -787,7 +793,7 @@ section[id^=port] .inner .scrolldown .mouse .dot{
 	font-weight: 900;
 	font-size: 150px;
 	line-height: 160px;
-	color:#73C5D7;
+	color:#555;
 	margin-bottom: 56px;
 }
 #port8 .inner > h3{

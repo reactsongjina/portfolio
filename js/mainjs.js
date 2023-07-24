@@ -27,6 +27,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	let prevN;
 	let winHalf;
 	let pages=document.getElementsByTagName("section");
+	let [page1,page2,page3,page4,page5]=pages;
 
 	let init=() => {
 		winHalf=window.innerHeight*0.75;
@@ -35,7 +36,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	window.addEventListener("resize", init);
 
 	function scrollInteraction(t){
-		console.log(n)
+		//console.log(n)
 		if(t < pages[1].offsetTop-winHalf){
 			n=0;
 		}
@@ -158,7 +159,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	trigger.add("section[id^=page]");
 
 	//#page2 skill 탭메뉴
-	let page2=document.getElementById("page2");
 	let skill=page2.firstElementChild.querySelector(".bottom").querySelector(".skill");
 	let skillList=skill.children;
 	
@@ -209,5 +209,71 @@ window.addEventListener("DOMContentLoaded", function(){
 		},
 	});
 
+	//page4 worklist 스와이퍼
+	let workSwiper = new Swiper("#page4 .worklist .mySwiper", {
+		slidesPerView: 4,
+		spaceBetween: 30,
+		loop: true,
+		pagination: {
+		el: ".swiper-pagination",
+		clickable: true,
+		},
+		breakpoints: {
+			1230: {
+				slidesPerView: 3,
+			},
+			630: {
+				slidesPerView: 2,
+			},
+			0: {
+				slidesPerView: 1,
+			},
+		},
+		navigation: {
+		nextEl: ".swiper-button-next",
+		prevEl: ".swiper-button-prev",
+		},
+	});
+
+	//page4 worklist 모달창
+	let modal=document.getElementById("modal");
+	let [modalImgbox,modalDesc]=modal.firstElementChild.children;
+	let modalDescP=modalDesc.getElementsByTagName("P")[0];
+	let modalDescSpan=modalDesc.getElementsByTagName("SPAN")[0];
+	let modalFicture=modal.getElementsByTagName("IMG")[0];
+	let [top,bottom]=page4.firstElementChild.children;
+	let [pofolist,worklist]=bottom.children;
+	let [workTit,workDesc]=worklist.children;
+	let workSwipeWrapper=workDesc.firstElementChild.firstElementChild;
+	let workSlide=workSwipeWrapper.children;
+
+	const modalData=[
+		{src:"./images/pc_printed_1.jpg", alt:"워크리스트1", p:"2021 남사당놀이 관악지부 예토 Wall&Moon 공연", span:"포스터, 리플렛 제작"},
+		{src:"./images/pc_printed_2.jpg", alt:"워크리스트2", p:"포엔 EV 배터리팩 리퍼비시 서비스", span:"리플렛 제작"},
+		{src:"./images/pc_printed_3.jpg", alt:"워크리스트3", p:"제 3회 빛가람 청렴문화제 팀작업", span:"포스터1안/현수막"},
+		{src:"./images/pc_printed_4.jpg", alt:"워크리스트4", p:"국기로 떠나는 아시아", span:"교구 시안 작업"},
+		{src:"./images/pc_printed_5.jpg", alt:"워크리스트5", p:"상상모리 길동", span:"옥외 간판 및 인쇄물작업"},
+		{src:"./images/pc_printed_1.jpg", alt:"워크리스트1", p:"2021 남사당놀이 관악지부 예토 Wall&Moon 공연", span:"포스터, 리플렛 제작"},
+		{src:"./images/pc_printed_2.jpg", alt:"워크리스트2", p:"포엔 EV 배터리팩 리퍼비시 서비스", span:"리플렛 제작"},
+		{src:"./images/pc_printed_3.jpg", alt:"워크리스트3", p:"제 3회 빛가람 청렴문화제 팀작업", span:"포스터1안/현수막"},
+		{src:"./images/pc_printed_4.jpg", alt:"워크리스트4", p:"국기로 떠나는 아시아", span:"교구 시안 작업"},
+		{src:"./images/pc_printed_5.jpg", alt:"워크리스트5", p:"상상모리 길동", span:"옥외 간판 및 인쇄물작업"},
+	];
+
+	for(let i=0; i<workSlide.length; i++){
+		workSlide[i].addEventListener("click", e => {
+			e.preventDefault();
+			body.classList.add("fixed");
+			modal.style.display="block";
+			modalFicture.setAttribute("src",modalData[i].src);
+			modalFicture.setAttribute("alt",modalData[i].alt);
+			modalDescP.innerHTML=modalData[i].p;
+			modalDescSpan.innerHTML=modalData[i].span;
+		});
+	}
+	modal.addEventListener("click", () => {
+		body.classList.remove("fixed");
+		modal.style.display="none";
+	});
 
 });
