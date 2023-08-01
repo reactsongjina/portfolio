@@ -510,6 +510,8 @@ section[id^=page] .inner h2{
 	background-color: #222;
 }
 #page2 .inner .top .txt_area > div .resume a{
+	display: block;
+	padding:20px;
 	color:#fff;
 }
 #page2 .inner .top .txt_area > div .resume a i{
